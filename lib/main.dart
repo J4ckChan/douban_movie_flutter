@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/Hot/HotWidget.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '豆瓣电影',
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primarySwatch: Colors.blueGrey,
       ),
       home: MyHomePage(title: '豆瓣电影'),
     );
@@ -32,22 +33,15 @@ class _MyHomePageState extends State<MyHomePage> {
     
     return Scaffold(
       bottomNavigationBar:BottomNavigationBar(
-            items:[
-              BottomNavigationBarItem(icon:Icon(Icons.movie),title: Text('热映')),
-              BottomNavigationBarItem(icon:Icon(Icons.search),title: Text('找片')),
-              BottomNavigationBarItem(icon:Icon(Icons.person),title: Text('我的')),
-            ],
+        currentIndex: 0,
+        items:[
+          BottomNavigationBarItem(icon:Icon(Icons.movie),title: Text('热映')),
+          BottomNavigationBarItem(icon:Icon(Icons.search),title: Text('找片')),
+          BottomNavigationBarItem(icon:Icon(Icons.person),title: Text('我的')),
+        ],
+        fixedColor: Theme.of(context).primaryColor,
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-          ],
-        ),
-      ),
+      body: HotWidget(),
     );
   }
 }
