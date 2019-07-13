@@ -1,9 +1,9 @@
+import 'package:douban_movie_flutter/Hot/HotListWidget.dart';
 import 'package:flutter/material.dart';
 
 class HotWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return HotWidgetState();
   }
 }
@@ -11,7 +11,6 @@ class HotWidget extends StatefulWidget {
 class HotWidgetState extends State<HotWidget> {
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return Column(
       children: <Widget>[
         Container(
@@ -36,14 +35,14 @@ class HotWidgetState extends State<HotWidget> {
                   decoration: InputDecoration(
                     //prefixIcon: Icon(Icons.search),
                     hintText: 'Search Movie & TV Series',
+                    filled: true,
                     contentPadding: EdgeInsets.only(top: 8,bottom: 8),
                     border: OutlineInputBorder(
                       borderSide: BorderSide.none,
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
-                    filled: true,
+                  ),
                 ),
-              ),
               )
             ],
           )
@@ -65,9 +64,7 @@ class HotWidgetState extends State<HotWidget> {
                 Expanded(
                   child:TabBarView(
                     children: <Widget>[
-                      Center(
-                        child: Text('hot showing'),
-                      ),
+                      HotListWidget(),
                       Center(
                         child: Text('coming soon'),
                       )

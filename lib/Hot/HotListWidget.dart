@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 class HotListWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return null;
   }
 }
@@ -15,26 +14,28 @@ class HotListWidget extends StatefulWidget {
 class HotListWidgetState extends State<HotListWidget> {
 
   String _curCity;
+  List<MovieData> _movieDataList;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _curCity = '杭州';
     requestHotMovieListWithCity(_curCity);  
   }
 
-  Future<List<MovieData>> requestHotMovieListWithCity(String city) async {
-    List<MovieData> moiveDataList = new List();
-    var url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=' +
-            city + '&start=0&count=10';
+  Future requestHotMovieListWithCity(String city) async {
+    List<MovieData> hotMovieList = new List();
+    var url = 'https://api.douban.com/v2/movie/in_theaters?apikey=0b2bdeda43b5688921839c8ecb20399b&city=' + city + '&start=0&count=10';
     var response = await http.get(url);
     if (response.statusCode == 200) {
       var jsonResponse = convert.jsonDecode(response.body);
       for (dynamic data in jsonResponse['subjects']) {
-        MovieData hotMovieData = MovieData.fromJson(data);
-        moiveDataList.add(hotMovieData);
+        MovieData movieItem = MovieData.fromJson(data);
+        hotMovieList.add(movieItem);
       }
+      setState(() {
+        _movieDataList = hotMovieList;
+      });
     } else {
       print('Request failed with State Code:${response.statusCode}');
     }
@@ -42,7 +43,12 @@ class HotListWidgetState extends State<HotListWidget> {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return null;
+    if (_movieDataList == null || _movieDataList.isEmpty) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else {
+      return null;
+    }
   }
 }
