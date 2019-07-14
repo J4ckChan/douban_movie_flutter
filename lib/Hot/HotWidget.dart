@@ -22,12 +22,16 @@ class HotWidgetState extends State<HotWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               FlatButton(
-                child: Text(_curCity),
+                child:Row(
+                  children: <Widget>[
+                    Text(_curCity),
+                    Icon(Icons.arrow_drop_down),
+                  ],
+                ),
                 onPressed: (){
                   _jumpToSelectCtiy();
                 },
               ),
-              Icon(Icons.arrow_drop_down),
               Expanded(
                 flex: 1,
                 child: TextField(
