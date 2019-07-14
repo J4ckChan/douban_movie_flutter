@@ -37,7 +37,12 @@ class _CityWidgetState extends State<CityWidget> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: Container(
-          child: Icon(Icons.arrow_back,color: Colors.green,),
+          child: GestureDetector(
+            child: Icon(Icons.arrow_back,color:Colors.green),
+            onTap: (){
+              Navigator.pop(context);
+            },
+          ),
         ),
       ),
       body: DefaultTabController(
