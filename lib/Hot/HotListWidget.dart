@@ -1,5 +1,4 @@
 import 'dart:convert' as convert;
-
 import 'package:douban_movie_flutter/Hot/HotListCell.dart';
 import 'package:douban_movie_flutter/Hot/MovieData.dart';
 import 'package:http/http.dart' as http;
@@ -47,6 +46,7 @@ class HotListWidgetState extends State<HotListWidget> with AutomaticKeepAliveCli
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     if (_movieDataList == null || _movieDataList.isEmpty) {
       return Center(
         child: CircularProgressIndicator(),
@@ -56,9 +56,7 @@ class HotListWidgetState extends State<HotListWidget> with AutomaticKeepAliveCli
         padding: const EdgeInsets.all(8),
         itemCount: _movieDataList.length,
         separatorBuilder: (context,index) => const Divider(color: Colors.black45,height: 1,),
-        itemBuilder: (context,index){
-          return HotListCell(_movieDataList[index]);
-        },
+        itemBuilder: (context,index) => HotListCell(_movieDataList[index]),
       );
     }
   }
