@@ -9,6 +9,7 @@ class HotWidget extends StatefulWidget {
 }
 
 class HotWidgetState extends State<HotWidget> {
+  String _curCity = '杭州';
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,9 +22,9 @@ class HotWidgetState extends State<HotWidget> {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               FlatButton(
-                child: Text('HangZhou'),
+                child: Text(_curCity),
                 onPressed: (){
-                  print('location');
+                  _jumpToSelectCtiy();
                 },
               ),
               Icon(Icons.arrow_drop_down),
@@ -77,5 +78,14 @@ class HotWidgetState extends State<HotWidget> {
         )
       ],
     );
+  }
+
+  void _jumpToSelectCtiy() async {
+    var selectedCity = await Navigator.pushNamed(context, '/city',arguments: _curCity);
+    if (selectedCity!= null ) {
+      setState(() {
+        _curCity = selectedCity;
+      });
+    } 
   }
 }

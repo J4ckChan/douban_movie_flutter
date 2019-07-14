@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/City/CityWidget.dart';
 import 'package:douban_movie_flutter/Hot/HotWidget.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blueGrey,
       ),
       home: MyHomePage(title: '豆瓣电影'),
+      routes: {
+        '/city':(context) => CityWidget(),
+      },
     );
   }
 }
