@@ -1,5 +1,6 @@
 import 'dart:convert' as convert;
 
+import 'package:douban_movie_flutter/Hot/HotListCell.dart';
 import 'package:douban_movie_flutter/Hot/MovieData.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
@@ -7,14 +8,17 @@ import 'package:flutter/material.dart';
 class HotListWidget extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return null;
+    return HotListWidgetState();
   }
 }
 
-class HotListWidgetState extends State<HotListWidget> {
+class HotListWidgetState extends State<HotListWidget> with AutomaticKeepAliveClientMixin {
 
   String _curCity;
   List<MovieData> _movieDataList;
+
+  @override
+  bool get wantKeepAlive => true;
 
   @override
   void initState() {
@@ -48,7 +52,14 @@ class HotListWidgetState extends State<HotListWidget> {
         child: CircularProgressIndicator(),
       );
     } else {
-      return null;
+      return ListView.separated(
+        padding: const EdgeInsets.all(8),
+        itemCount: _movieDataList.length,
+        separatorBuilder: (context,index) => const Divider(color: Colors.black45,height: 1,),
+        itemBuilder: (context,index){
+          return HotListCell(_movieDataList[index]);
+        },
+      );
     }
   }
 }
