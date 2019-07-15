@@ -44,7 +44,7 @@ class _HotListCellState extends State<HotListCell> {
             alignment: Alignment.center,
             child: Column(
               children: <Widget>[
-                Text(widget.movieData.collectCount.toString()+'收藏'),
+                Text(widget.movieData.collectCount.toString()+'收藏',style: TextStyle(color: Colors.red),),
                 OutlineButton(
                   child: Text('购票'),
                   textColor: Colors.red,
