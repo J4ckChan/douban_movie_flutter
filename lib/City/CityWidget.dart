@@ -78,60 +78,66 @@ class _CityWidgetState extends State<CityWidget> {
               flex: 1,
               child: TabBarView(
                 children: <Widget>[
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Padding(padding: EdgeInsets.only(left: 20,top: 8),child: Text('当前城市'),),
-                      Container(
-                        width: 120,
-                        padding: EdgeInsets.only(left: 20,top: 8),
-                        child: FlatButton(
-                          onPressed: (){},
-                          shape: RoundedRectangleBorder(
-                            side: BorderSide(color: Colors.grey[350]),
-                            borderRadius: BorderRadius.circular(5),
-                          ),
-                          child: Row(
-                            children: <Widget>[
-                              Icon(Icons.location_on),
-                              Text('杭州'),
-                            ],
-                          ),
-                        )
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(left: 20,top: 8),
-                        child: Text('热门城市'),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Padding(
-                          padding: EdgeInsets.all(20),
-                          child: GridView.builder(
-                            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                              crossAxisCount: 3,
-                              mainAxisSpacing: 20,
-                              crossAxisSpacing: 20,
-                              childAspectRatio: 2.5,
+                  Container(
+                    color: Colors.grey[100],
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Padding(padding: EdgeInsets.only(left: 20,top: 8),child: Text('当前城市'),),
+                        Container(
+                          width: 120,
+                          padding: EdgeInsets.only(left: 20,top: 8),
+                          child: FlatButton(
+                            color: Colors.white,
+                            onPressed: (){},
+                            shape: RoundedRectangleBorder(
+                              side: BorderSide(color: Colors.grey[350]),
+                              borderRadius: BorderRadius.circular(5),
                             ),
-                            itemCount: _hotCitys.length,
-                            itemBuilder: (context,index){
-                              return MaterialButton(
-                                onPressed: (){
-                                  Navigator.pop(context,_hotCitys[index]);
-                                },
-                                shape: RoundedRectangleBorder(
-                                  side: BorderSide(color: Colors.grey[350]),
-                                  borderRadius: BorderRadius.circular(5),
-                                ),
-                                child: Text(_hotCitys[index]),
-                              );
-                            },
-                          ),
-                        )
-                      ),
-                    ],
+                            child: Row(
+                              children: <Widget>[
+                                Icon(Icons.location_on),
+                                Text('杭州'),
+                              ],
+                            ),
+                          )
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 20,top: 8),
+                          child: Text('热门城市'),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: EdgeInsets.all(20),
+                            child: GridView.builder(
+                              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 3,
+                                mainAxisSpacing: 20,
+                                crossAxisSpacing: 20,
+                                childAspectRatio: 2.5,
+                              ),
+                              itemCount: _hotCitys.length,
+                              itemBuilder: (context,index){
+                                return MaterialButton(
+                                  onPressed: (){
+                                    Navigator.pop(context,_hotCitys[index]);
+                                  },
+                                  shape: RoundedRectangleBorder(
+                                    side: BorderSide(color: Colors.grey[350]),
+                                    borderRadius: BorderRadius.circular(5),
+                                  ),
+                                  color: Colors.white,
+                                  elevation: 0,
+                                  child: Text(_hotCitys[index]),
+                                );
+                              },
+                            ),
+                          )
+                        ),
+                      ],
+                    ),
                   ),
                   Center(child: Text('Oversea'),)
                 ],
