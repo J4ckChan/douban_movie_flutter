@@ -88,8 +88,8 @@ class HotWidgetState extends State<HotWidget> {
   }
 
   void _jumpToSelectCtiy() async {
-    var selectedCity = await Navigator.pushNamed(context, '/city',arguments: _curCity);
-    if (selectedCity!= null ) {
+    dynamic selectedCity = await Navigator.pushNamed(context, '/city',arguments: _curCity);
+    if (selectedCity != null ) {
       setState(() {
         _curCity = selectedCity;
       });
