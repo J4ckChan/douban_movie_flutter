@@ -29,7 +29,14 @@ class MovieData {
 
     List<Cast> casts = new List();
     for (dynamic castData in movieDataJson['casts']) {
-      Avatars avatars = Avatars(castData['avatars']['small'], castData['avatars']['medium'], castData['avatars']['large']);
+      dynamic avatarsData = castData['avatars'];
+      Avatars avatars;
+      if (avatarsData != null) {
+        avatars = Avatars(castData['avatars']['small'], castData['avatars']['medium'], castData['avatars']['large']);
+      }else{
+        avatars = null;
+      }
+      
       Cast cast = new Cast(castData['alt'], avatars, castData['name'], castData['id']);
       casts.add(cast);
     }
