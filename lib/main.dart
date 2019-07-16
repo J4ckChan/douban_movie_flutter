@@ -1,5 +1,7 @@
 import 'package:douban_movie_flutter/City/CityWidget.dart';
 import 'package:douban_movie_flutter/Hot/HotWidget.dart';
+import 'package:douban_movie_flutter/Mine/Mine.dart';
+import 'package:douban_movie_flutter/Search/SearchMovie.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -31,21 +33,29 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+
+  List<Widget> _barItemPage = [HotWidget(),SearchMovie(),Mine()];
+  int _selectedIndex = 0;
   
   @override
   Widget build(BuildContext context) {
     
     return Scaffold(
       bottomNavigationBar:BottomNavigationBar(
-        currentIndex: 0,
+        currentIndex: _selectedIndex,
         items:[
           BottomNavigationBarItem(icon:Icon(Icons.movie),title: Text('热映')),
           BottomNavigationBarItem(icon:Icon(Icons.search),title: Text('找片')),
           BottomNavigationBarItem(icon:Icon(Icons.person),title: Text('我的')),
         ],
         fixedColor: Theme.of(context).primaryColor,
+        onTap: (index){
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
       ),
-      body: HotWidget(),
+      body: _barItemPage[_selectedIndex],
     );
   }
 }
