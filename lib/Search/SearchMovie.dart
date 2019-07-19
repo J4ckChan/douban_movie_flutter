@@ -58,14 +58,39 @@ class _SearchMovieState extends State<SearchMovie> {
                                 children: <Widget>[
                                   Expanded(
                                     flex: 8,
-                                    child: ButtonWithDouBanStyle1(Icons.list,'找电影','科幻/悬疑/犯罪'),
+                                    child: ButtonWithDouBanStyle1(
+                                        onPressed:(){
+                                          print('object');
+                                        },
+                                        icon:Icons.list,
+                                        title:'找电影',
+                                        subTitle:'科幻/悬疑/犯罪'
+                                      ),
                                   ),
                                   Expanded(
                                     flex: 7,
-                                    child: ButtonWithDouBanStyle1(Icons.collections, '我的影视' , '700多部',iconBackgroundColor: Colors.pinkAccent,)
+                                    child: ButtonWithDouBanStyle1(
+                                        onPressed:(){
+                                          print('object1');
+                                        },
+                                        icon:Icons.collections, 
+                                        title:'我的影视' ,
+                                        subTitle: '700多部',
+                                        iconBackgroundColor: Colors.pinkAccent,
+                                      )
                                   )
                                 ],
-                              )
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 20,left: 20,top:20),
+                                child: Row(
+                                  children: <Widget>[
+                                    Expanded(child: Text('豆瓣热门',style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold))),
+                                    Text('全部99+'),
+                                    Icon(Icons.arrow_right),
+                                  ],
+                                ),
+                              ),
                             ],
                           ),
                           Center(
