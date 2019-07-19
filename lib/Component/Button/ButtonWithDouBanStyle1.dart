@@ -2,18 +2,20 @@ import 'package:flutter/material.dart';
 
 class ButtonWithDouBanStyle1 extends StatelessWidget {
 
-  IconData icon;
-  String title;
-  String subTitle;
-  Color iconBackgroundColor;
+  final IconData icon;
+  final String title;
+  final String subTitle;
+  final Color iconBackgroundColor;
 
   ButtonWithDouBanStyle1(this.icon,this.title,this.subTitle,{this.iconBackgroundColor = Colors.purple});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100,
-      color: Colors.blueGrey,
+      height: 92,
+      decoration: BoxDecoration(
+        border: BorderDirectional(bottom: BorderSide(width: 1,color: Colors.black12)),
+      ),
       child: Padding(
         padding: const EdgeInsets.only(left: 16),
         child: Row(
@@ -43,6 +45,14 @@ class ButtonWithDouBanStyle1 extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 8),
               child: Icon(Icons.arrow_right),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 30,bottom: 30),
+              child: Container(
+                decoration: BoxDecoration(
+                  border: BorderDirectional(end: BorderSide(width: 1,color: Colors.black12)),
+                ),
+              ),
             )
           ],
         ),
