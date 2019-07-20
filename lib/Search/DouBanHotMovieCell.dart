@@ -1,13 +1,16 @@
+import 'package:douban_movie_flutter/Hot/MovieData.dart';
 import 'package:flutter/material.dart';
 
 class DouBanHotMovieCell extends StatefulWidget {
 
   const DouBanHotMovieCell({
     Key key,
-    this.index,
+    this.hasMovieData,
+    this.movieData,
   }):super(key:key);
 
-  final int index;
+  @required final bool hasMovieData;
+  final MovieData movieData;
 
   @override
   _DouBanHotMovieCellState createState() => _DouBanHotMovieCellState();
@@ -24,35 +27,58 @@ class _DouBanHotMovieCellState extends State<DouBanHotMovieCell> {
         children: <Widget>[
           Container(
             width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
-            height: 180,
+            height: 160,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(8),
-              child: FadeInImage.assetNetwork(
-                placeholder: 'images/sample.jpg',
-                image: 'https://img1.doubanio.com/view/photo/l/public/p511146807.jpg',
-                fit: BoxFit.fill,
-              ),
+              child: hotMovieWeeklyImage(),
             ),
           ),
           Container(
             width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
-            child: Text('海上钢琴师 + $widget.index',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),overflow: TextOverflow.ellipsis,)
+            child: Text(widget.hasMovieData? widget.movieData.title:'',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),overflow: TextOverflow.ellipsis,)
           ),
           Container(
             color: Colors.white10,
             width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
             child: Row(
-              children: <Widget>[
-                Icon(Icons.star,color:Colors.yellow,size:16),
-                Icon(Icons.star,color:Colors.yellow,size:16),
-                Icon(Icons.star,color:Colors.yellow,size:16),
-                Icon(Icons.star,color:Colors.yellow,size:16),
-                Icon(Icons.star,color:Colors.white,size:16),
-              ],
+              children: starIcons(),
             ),
           )
         ],
       ),
     );
   }
+
+  Widget hotMovieWeeklyImage() {
+    if (!widget.hasMovieData) {
+      return Image.asset('images/image_placeholder.png',fit: BoxFit.fill,);
+    } else {
+      return FadeInImage.assetNetwork(
+        placeholder: 'images/image_placeholder.png',
+        image: widget.movieData.imageUrls.small,
+        fit: BoxFit.fill,
+      );
+    }
+  }
+
+  List<Widget> starIcons() {
+    int startCount = 5;
+    int yellowStarCount = 0;
+    List<Widget> starIcons = new List();
+    if (widget.hasMovieData) {
+      yellowStarCount = (widget.movieData.rating.average.toInt()~/2).toInt();
+    }
+    do {
+      startCount -= 1;
+      if (yellowStarCount > 0) {
+        starIcons.add(Icon(Icons.star,color:Colors.yellow,size:16));
+        yellowStarCount-=1;
+      } else {
+        starIcons.add(Icon(Icons.star,color:Colors.black12,size:16));
+      }
+    } while (startCount > 0);
+
+    return starIcons;
+  }  
+
 }
