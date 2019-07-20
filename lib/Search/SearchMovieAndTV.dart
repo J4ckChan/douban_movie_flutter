@@ -1,12 +1,13 @@
 import 'package:douban_movie_flutter/Component/Button/ButtonWithDouBanStyle1.dart';
+import 'package:douban_movie_flutter/Search/DouBanHotMovie.dart';
 import 'package:flutter/material.dart';
 
-class SearchMovie extends StatefulWidget {
+class SearchMovieAndTV extends StatefulWidget {
   @override
-  _SearchMovieState createState() => _SearchMovieState();
+  _SearchMovieAndTVState createState() => _SearchMovieAndTVState();
 }
 
-class _SearchMovieState extends State<SearchMovie> {
+class _SearchMovieAndTVState extends State<SearchMovieAndTV> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -59,38 +60,39 @@ class _SearchMovieState extends State<SearchMovie> {
                                   Expanded(
                                     flex: 8,
                                     child: ButtonWithDouBanStyle1(
-                                        onPressed:(){
-                                          print('object');
-                                        },
-                                        icon:Icons.list,
-                                        title:'找电影',
-                                        subTitle:'科幻/悬疑/犯罪'
-                                      ),
+                                      onPressed:(){
+                                        print('object');
+                                      },
+                                      icon:Icons.list,
+                                      title:'找电影',
+                                      subTitle:'科幻/悬疑/犯罪'
+                                    ),
                                   ),
                                   Expanded(
                                     flex: 7,
                                     child: ButtonWithDouBanStyle1(
-                                        onPressed:(){
-                                          print('object1');
-                                        },
-                                        icon:Icons.collections, 
-                                        title:'我的影视' ,
-                                        subTitle: '700多部',
-                                        iconBackgroundColor: Colors.pinkAccent,
-                                      )
+                                      onPressed:(){
+                                        print('object1');
+                                      },
+                                      icon:Icons.collections, 
+                                      title:'我的影视' ,
+                                      subTitle: '700多部',
+                                      iconBackgroundColor: Colors.pinkAccent,
+                                    )
                                   )
                                 ],
                               ),
                               Padding(
-                                padding: const EdgeInsets.only(right: 20,left: 20,top:20),
+                                padding: const EdgeInsets.only(right: 16,left: 20,top:16),
                                 child: Row(
-                                  children: <Widget>[
-                                    Expanded(child: Text('豆瓣热门',style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold))),
-                                    Text('全部99+'),
-                                    Icon(Icons.arrow_right),
+                                children: <Widget>[
+                                  Expanded(child: Text('豆瓣热门',style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold))),
+                                  Text('全部99+'),
+                                  Icon(Icons.arrow_right),
                                   ],
                                 ),
                               ),
+                              DouBanHotMovie(),
                             ],
                           ),
                           Center(
@@ -109,4 +111,6 @@ class _SearchMovieState extends State<SearchMovie> {
     );
   }
 }
+
+
 

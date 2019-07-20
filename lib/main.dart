@@ -1,7 +1,7 @@
 import 'package:douban_movie_flutter/City/CityWidget.dart';
 import 'package:douban_movie_flutter/Hot/HotWidget.dart';
 import 'package:douban_movie_flutter/Mine/Mine.dart';
-import 'package:douban_movie_flutter/Search/SearchMovie.dart';
+import 'package:douban_movie_flutter/Search/SearchMovieAndTV.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(MyApp());
@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  List<Widget> _barItemPage = [HotWidget(),SearchMovie(),Mine()];
+  List<Widget> _barItemPage = [HotWidget(),SearchMovieAndTV(),Mine()];
   int _selectedIndex = 0;
   
   @override
