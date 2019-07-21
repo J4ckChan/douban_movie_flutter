@@ -58,7 +58,7 @@ class _DouBanHotMovieState extends State<DouBanHotMovie> {
               itemCount: 10,
               itemBuilder: (context,index){
                 if (this.hotMovieWeekly == null || this.hotMovieWeekly.isEmpty){
-                  return DouBanHotMovieCell(hasMovieData: false,);
+                  return DouBanHotMovieCell();
                 }else{
                   return DouBanHotMovieCell(movieData: this.hotMovieWeekly[index],);
                 }
