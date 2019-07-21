@@ -37,22 +37,36 @@ class _DouBanHotMovieState extends State<DouBanHotMovie> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(top:8,left: 16,right: 16),
-      child: Container(
-        height: 220,
-        child: ListView.builder(
-          scrollDirection: Axis.horizontal,
-          itemCount: 10,
-          itemBuilder: (context,index){
-            if (this.hotMovieWeekly == null || this.hotMovieWeekly.isEmpty){
-              return DouBanHotMovieCell(hasMovieData: false,);
-            }else{
-              return DouBanHotMovieCell(movieData: this.hotMovieWeekly[index],);
-            }
-          },
+    return Column(
+      children: <Widget>[
+        Padding(
+          padding: const EdgeInsets.only(right: 16,left: 20,top:16),
+          child: Row(
+            children: <Widget>[
+              Expanded(child: Text('豆瓣热门',style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold))),
+              Text('全部99+'),
+              Icon(Icons.arrow_right),
+            ],
+         ),
         ),
-      ),
+        Padding(
+          padding: const EdgeInsets.only(top:8,left: 16,right: 16),
+          child: Container(
+            height: 220,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: 10,
+              itemBuilder: (context,index){
+                if (this.hotMovieWeekly == null || this.hotMovieWeekly.isEmpty){
+                  return DouBanHotMovieCell(hasMovieData: false,);
+                }else{
+                  return DouBanHotMovieCell(movieData: this.hotMovieWeekly[index],);
+                }
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 } 

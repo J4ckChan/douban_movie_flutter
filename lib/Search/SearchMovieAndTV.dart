@@ -82,16 +82,6 @@ class _SearchMovieAndTVState extends State<SearchMovieAndTV> {
                                   )
                                 ],
                               ),
-                              Padding(
-                                padding: const EdgeInsets.only(right: 16,left: 20,top:16),
-                                child: Row(
-                                children: <Widget>[
-                                  Expanded(child: Text('豆瓣热门',style:TextStyle(fontSize: 20,fontWeight: FontWeight.bold))),
-                                  Text('全部99+'),
-                                  Icon(Icons.arrow_right),
-                                  ],
-                                ),
-                              ),
                               DouBanHotMovie(),
                             ],
                           ),
