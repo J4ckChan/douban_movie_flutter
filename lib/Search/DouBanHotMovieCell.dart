@@ -31,12 +31,13 @@ class _DouBanHotMovieCellState extends State<DouBanHotMovieCell> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Container(
-            width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
-            height: 160,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(8),
-              child: hotMovieWeeklyImage(),
+          Expanded(
+            child: Container(
+              width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: hotMovieWeeklyImage(),
+              ),
             ),
           ),
           Container(
