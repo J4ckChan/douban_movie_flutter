@@ -5,11 +5,17 @@ class DouBanHotMovieCell extends StatefulWidget {
 
   const DouBanHotMovieCell({
     Key key,
-    this.hasMovieData,
+    hasMovieData,
     this.movieData,
   }):super(key:key);
 
-  @required final bool hasMovieData;
+  bool get hasMovieData  {
+    if (movieData != null) {
+      return true;
+    } else {
+      return false;
+    }
+  }
   final MovieData movieData;
 
   @override

@@ -48,7 +48,7 @@ class _DouBanHotMovieState extends State<DouBanHotMovie> {
             if (this.hotMovieWeekly == null || this.hotMovieWeekly.isEmpty){
               return DouBanHotMovieCell(hasMovieData: false,);
             }else{
-              return DouBanHotMovieCell(hasMovieData: true, movieData: this.hotMovieWeekly[index],);
+              return DouBanHotMovieCell(movieData: this.hotMovieWeekly[index],);
             }
           },
         ),
