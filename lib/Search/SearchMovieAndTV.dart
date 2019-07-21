@@ -50,7 +50,7 @@ class _SearchMovieAndTVState extends State<SearchMovieAndTV> {
                               Container(
                                 height: 140,
                                 width: MediaQuery.of(context).size.width,
-                                child: Image.asset('images/suggetion_from_douabn.png',fit:BoxFit.fitWidth),
+                                child: Image.asset('images/suggestion_on_discovery.png',fit:BoxFit.fill)
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,

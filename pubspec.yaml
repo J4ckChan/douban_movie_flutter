@@ -45,7 +45,7 @@ flutter:
   assets:
    - images/sample.jpg
    - images/image_placeholder.png
-   - images/suggetion_from_douabn.png
+   - images/suggestion_on_discovery.png
   #  - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
