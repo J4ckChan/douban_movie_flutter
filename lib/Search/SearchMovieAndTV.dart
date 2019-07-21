@@ -49,10 +49,8 @@ class _SearchMovieAndTVState extends State<SearchMovieAndTV> {
                             children: <Widget>[
                               Container(
                                 height: 140,
-                                color: Colors.pink,
-                                child: Center(
-                                  child: Text('ad',style: TextStyle(color: Colors.black),),
-                                ),
+                                width: MediaQuery.of(context).size.width,
+                                child: Image.asset('images/suggetion_from_douabn.png',fit:BoxFit.fitWidth),
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.start,
