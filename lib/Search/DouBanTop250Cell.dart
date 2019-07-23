@@ -30,7 +30,7 @@ class DouBanTop250Cell extends StatelessWidget {
 		            borderRadius: BorderRadius.circular(4),
 		            child: FadeInImage.assetNetwork(
 		              placeholder: 'images/suggestion_on_discovery.png',
-     	            image: 'https://img1.doubanio.com/view/photo/l/public/p511146807.jpg',
+     	            image: moiveData.imageUrls.small,
 		              fit: BoxFit.fill,
      	          ),
 	            ),
@@ -42,7 +42,7 @@ class DouBanTop250Cell extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
-                Text('海上钢琴师',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
+                Text(moiveData.title,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 16),),
                 Padding(
                   padding: const EdgeInsets.only(top:16.0),
                   child: Row(
@@ -52,10 +52,10 @@ class DouBanTop250Cell extends StatelessWidget {
                       Icon(Icons.star,color: Colors.yellow,size: 20,),
                       Icon(Icons.star,color: Colors.yellow,size: 20,),
                       Icon(Icons.star,color: Colors.yellow,size: 20,),
-                      Text('9.6'),
+                      Text(moiveData.rating.average.toString()),
                       Padding(
                         padding: const EdgeInsets.only(left: 8),
-                        child: Text('400000评论'),
+                        child: Text(moiveData.collectCount.toString()+'人收藏'),
                       )
                     ],
                   ),
