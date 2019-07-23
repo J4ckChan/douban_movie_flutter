@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/Component/Button/ButtonWithDouBanStyle1.dart';
 import 'package:douban_movie_flutter/Search/DouBanHotMovie.dart';
+import 'package:douban_movie_flutter/Search/DouBanTop250List.dart';
 import 'package:flutter/material.dart';
 
 class SearchMovieAndTV extends StatefulWidget {
@@ -45,43 +46,46 @@ class _SearchMovieAndTVState extends State<SearchMovieAndTV> {
                     Expanded(
                       child: TabBarView(
                         children: <Widget>[
-                          Column(
-                            children: <Widget>[
-                              Container(
-                                height: 140,
-                                width: MediaQuery.of(context).size.width,
-                                child: Image.asset('images/suggestion_on_discovery.png',fit:BoxFit.fill)
-                              ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Expanded(
-                                    flex: 8,
-                                    child: ButtonWithDouBanStyle1(
-                                      onPressed:(){
-                                        print('object');
-                                      },
-                                      icon:Icons.list,
-                                      title:'找电影',
-                                      subTitle:'科幻/悬疑/犯罪'
+                          SingleChildScrollView(
+                            child: Column(
+                              children: <Widget>[
+                                Container(
+                                  height: 140,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Image.asset('images/suggestion_on_discovery.png',fit:BoxFit.fill)
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    Expanded(
+                                      flex: 8,
+                                      child: ButtonWithDouBanStyle1(
+                                        onPressed:(){
+                                          print('object');
+                                        },
+                                        icon:Icons.list,
+                                        title:'找电影',
+                                        subTitle:'科幻/悬疑/犯罪'
+                                      ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    flex: 7,
-                                    child: ButtonWithDouBanStyle1(
-                                      onPressed:(){
-                                        print('object1');
-                                      },
-                                      icon:Icons.collections, 
-                                      title:'我的影视' ,
-                                      subTitle: '700多部',
-                                      iconBackgroundColor: Colors.pinkAccent,
+                                    Expanded(
+                                      flex: 7,
+                                      child: ButtonWithDouBanStyle1(
+                                        onPressed:(){
+                                          print('object1');
+                                        },
+                                        icon:Icons.collections, 
+                                        title:'我的影视' ,
+                                        subTitle: '700多部',
+                                        iconBackgroundColor: Colors.pinkAccent,
+                                      )
                                     )
-                                  )
-                                ],
-                              ),
-                              DouBanHotMovie(),
-                            ],
+                                  ],
+                                ),
+                                DouBanHotMovie(),
+                                DouBanTop250List(),
+                              ],
+                            ),
                           ),
                           Center(
                             child: Text('tv',style: TextStyle(color: Colors.black),),
