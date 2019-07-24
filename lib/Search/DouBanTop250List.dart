@@ -48,21 +48,38 @@ class _DouBanTop250ListState extends State<DouBanTop250List> {
       child: Column(
         children: <Widget>[
           Container(
-            color: Colors.purple,
             alignment: Alignment.centerLeft,
             child: Text('豆瓣电影 Top250',style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),
           ),
           Container(
-            color: Colors.yellow,
-            height: 76.0*5,
-            child: ListView.builder(
+            height: 80.0*5,
+            child: ListView.separated(
               padding: const EdgeInsets.all(0),
               itemCount: 5,
               itemBuilder: (context,index){
                 return DouBanTop250Cell(index: index,moiveData: top250Movie[index],);
               },
+              separatorBuilder: (context,index){
+                return Container(
+                  constraints: BoxConstraints.tightFor(height: 1),
+                  color: Colors.black26,
+                );
+              },
             ),
-          )
+          ),
+          Container(
+            decoration: BoxDecoration(
+              border: BorderDirectional(
+                top: BorderSide(width: 1,color: Colors.black26),
+              )
+            ),
+            child: Padding(
+              padding: const EdgeInsets.only(top:4.0),
+              child: Center(
+                child: Text('全部250部'),
+              ),
+            ),
+          ),
         ],
       ),
     );
