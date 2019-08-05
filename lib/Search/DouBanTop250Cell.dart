@@ -54,7 +54,7 @@ class DouBanTop250Cell extends StatelessWidget {
 	            child: ClipRRect(
 		            borderRadius: BorderRadius.circular(4),
 		            child: FadeInImage.assetNetwork(
-		              placeholder: 'images/suggestion_on_discovery.png',
+		              placeholder: 'images/image_placeholder.png',
      	            image: moiveData.imageUrls.small,
 		              fit: BoxFit.fill,
      	          ),

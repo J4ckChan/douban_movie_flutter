@@ -39,8 +39,11 @@ class _DouBanTop250ListState extends State<DouBanTop250List> {
   @override
   Widget build(BuildContext context) {
     if (top250Movie == null || top250Movie.isEmpty) {
-      return Center(
-        child: CircularProgressIndicator(),
+      return Container(
+        height: 80.0*4,
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
       );
     } else {
     return  Padding(
