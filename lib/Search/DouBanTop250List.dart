@@ -65,7 +65,7 @@ class _DouBanTop250ListState extends State<DouBanTop250List> {
               separatorBuilder: (context,index){
                 return Container(
                   constraints: BoxConstraints.tightFor(height: 1),
-                  color: Colors.black26,
+                  color: Colors.black12,
                 );
               },
             ),
