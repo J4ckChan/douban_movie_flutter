@@ -24,33 +24,38 @@ class DouBanHotMovieCell extends StatefulWidget {
 class _DouBanHotMovieCellState extends State<DouBanHotMovieCell> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Expanded(
-            child: Container(
-              width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8),
-                child: hotMovieWeeklyImage(),
+    return GestureDetector(
+      onTap:() {
+        Navigator.pushNamed(context, '/movieDetail',arguments: widget.movieData.id);
+      },  
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Container(
+                width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: hotMovieWeeklyImage(),
+                ),
               ),
             ),
-          ),
-          Container(
-            width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
-            child: Text(widget.hasMovieData? widget.movieData.title:'',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),overflow: TextOverflow.ellipsis,)
-          ),
-          Container(
-            color: Colors.white10,
-            width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
-            child: Row(
-              children: starIcons(),
+            Container(
+              width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
+              child: Text(widget.hasMovieData? widget.movieData.title:'',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 14),overflow: TextOverflow.ellipsis,)
             ),
-          )
-        ],
+            Container(
+              color: Colors.white10,
+              width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
+              child: Row(
+                children: starIcons(),
+              ),
+            )
+          ],
+        ),
       ),
     );
   }
