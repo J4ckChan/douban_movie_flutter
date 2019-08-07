@@ -1,4 +1,5 @@
 import 'package:douban_movie_flutter/Hot/MovieData.dart';
+import 'package:douban_movie_flutter/MovieDetail/MovieDetail.dart';
 import 'package:flutter/material.dart';
 
 class DouBanHotMovieCell extends StatefulWidget {
@@ -26,7 +27,10 @@ class _DouBanHotMovieCellState extends State<DouBanHotMovieCell> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap:() {
-        Navigator.pushNamed(context, '/movieDetail',arguments: widget.movieData.id);
+        Navigator.push(context, MaterialPageRoute(
+          builder: (context) =>  MovieDetail(id: widget.movieData.id,)
+          )
+        );
       },  
       child: Padding(
         padding: const EdgeInsets.all(8.0),

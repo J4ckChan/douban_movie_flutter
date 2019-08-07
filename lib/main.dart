@@ -1,7 +1,6 @@
 import 'package:douban_movie_flutter/City/CityWidget.dart';
 import 'package:douban_movie_flutter/Hot/HotWidget.dart';
 import 'package:douban_movie_flutter/Mine/Mine.dart';
-import 'package:douban_movie_flutter/MovieDetail/MovieDetail.dart';
 import 'package:douban_movie_flutter/Search/SearchMovieAndTV.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,6 @@ class MyApp extends StatelessWidget {
       home: MyHomePage(title: '豆瓣电影'),
       routes: {
         '/city':(context) => CityWidget(),
-        '/movieDetail':(context) => MovieDetail(id: ModalRoute.of(context).settings.arguments,),
       },
     );
   }
