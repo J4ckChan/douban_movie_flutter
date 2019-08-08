@@ -57,6 +57,7 @@ class _DouBanTop250ListState extends State<DouBanTop250List> {
           Container(
             height: 80.0*5,
             child: ListView.separated(
+              physics: NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.all(0),
               itemCount: 5,
               itemBuilder: (context,index){
