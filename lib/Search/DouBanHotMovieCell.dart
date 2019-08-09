@@ -41,9 +41,18 @@ class _DouBanHotMovieCellState extends State<DouBanHotMovieCell> {
             Expanded(
               child: Container(
                 width: (MediaQuery.of(context).size.width -32)/3.0 - 16,
-                child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: hotMovieWeeklyImage(),
+                child: Container(
+                  decoration: BoxDecoration(
+                    border: Border.all(
+                      color: Colors.grey[400],
+                      width: 1,
+                    ),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(8),
+                    child: hotMovieWeeklyImage(),
+                  ),
                 ),
               ),
             ),
