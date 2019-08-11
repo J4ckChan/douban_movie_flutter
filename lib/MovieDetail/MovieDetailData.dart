@@ -138,8 +138,9 @@ class Rating {
   final double average;
   final int min;
   final double value;
+  final Map details;
 
-  Rating({this.max,this.average,this.min,this.value});
+  Rating({this.max,this.average,this.min,this.value,this.details});
 
   factory Rating.fromJson(Map<String,dynamic> json) {
     return Rating(
@@ -147,6 +148,7 @@ class Rating {
       average: json['average'] as double,
       min: json['min'] as int,
       value: json['value'] as double,
+      details: json['details'] as Map,
     );
   }
 }
