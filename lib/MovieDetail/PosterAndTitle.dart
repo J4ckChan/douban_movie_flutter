@@ -1,4 +1,4 @@
-import 'package:douban_movie_flutter/Component/FiveStarIcon/FiveStarIcon.dart';
+import 'package:douban_movie_flutter/Component/StarsIcon/StarsIcon.dart';
 import 'package:flutter/material.dart';
 import 'MovieDetailData.dart';
 
@@ -77,7 +77,7 @@ class PosterAndTitle extends StatelessWidget {
                               padding: const EdgeInsets.only(right:8),
                               child: Text('已看过',style: TextStyle(color: Colors.white,fontSize: 16,fontWeight: FontWeight.w400),),
                             ),
-                            FiveStarIcon(rating: this.movieDetailData.rating.average/2.0,size: 15.0,),
+                            StarsIcon(rating: this.movieDetailData.rating.average/2.0,size: 15.0,),
                             Padding(
                               padding: const EdgeInsets.only(left: 8),
                               child: Text('20190726',style:TextStyle(color: Colors.grey[300])),

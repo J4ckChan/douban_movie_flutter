@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
-class FiveStarIcon extends StatelessWidget {
+class StarsIcon extends StatelessWidget {
 
-  const FiveStarIcon ({
+  const StarsIcon ({
     Key key,
     @required this.rating,
     this.size,
+    this.color,
   }):super (key:key);
 
   final double rating;
   final double size;
+  final Color color;
 
   int get integer {
     return this.rating != null ? (rating%10).toInt() : 0;
@@ -22,13 +24,13 @@ class FiveStarIcon extends StatelessWidget {
     List<Widget> subWidget = List();
 
     for (var i = 0; i < integer; i++){
-      subWidget.add(Icon(Icons.star,color:Colors.yellow[700],size: this.size,));
+      subWidget.add(Icon(Icons.star,color:this.color != null? this.color:Colors.yellow[700],size: this.size,));
     }
 
     if (remainder < 0.5 && remainder > 0) {
-      subWidget.add(Icon(Icons.star,color:Colors.black12,size: this.size,));
-    } else {
-      subWidget.add(Icon(Icons.star_half,color:Colors.yellow[700],size: this.size,));
+      subWidget.add(Icon(Icons.star,color:this.color != null? this.color:Colors.black12,size: this.size,));
+    } else if (remainder > 0.5){
+      subWidget.add(Icon(Icons.star_half,color:this.color != null? this.color:Colors.yellow[700],size: this.size,));
     }
     
     return subWidget;
