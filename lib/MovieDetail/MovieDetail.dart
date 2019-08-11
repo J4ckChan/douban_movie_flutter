@@ -1,4 +1,5 @@
 import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
+import 'package:douban_movie_flutter/MovieDetail/MovieDetailWidget.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -44,7 +45,7 @@ class _MovieDetailState extends State<MovieDetail> {
             print(snapshot.error);
           }
           return snapshot.hasData 
-          ? Center(child: Text("Success"),)
+          ? MovieDetailWidget(movieDetailData: snapshot.data,)
           :Center(child: CircularProgressIndicator(),);
         },
       )
