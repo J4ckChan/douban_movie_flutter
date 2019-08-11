@@ -1,5 +1,4 @@
-import 'package:douban_movie_flutter/Component/ColumnStack/ColumnStack.dart';
-import 'package:douban_movie_flutter/Component/StarsIcon/StarsIcon.dart';
+import 'package:douban_movie_flutter/MovieDetail/DouBanRatingCard.dart';
 import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
 import 'package:douban_movie_flutter/MovieDetail/PosterAndTitle.dart';
 import 'package:flutter/material.dart';
