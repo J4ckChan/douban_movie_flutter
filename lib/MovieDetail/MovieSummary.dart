@@ -53,6 +53,7 @@ class _MovieSummaryState extends State<MovieSummary> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children:<Widget>[
         Padding(
           padding: const EdgeInsets.only(left: 16,top: 8),
