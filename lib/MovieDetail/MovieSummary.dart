@@ -44,7 +44,7 @@ class _MovieSummaryState extends State<MovieSummary> {
             this._maxLineOfSummary = 20;
           });
         },
-        child: Text('展开',style:TextStyle(fontSize: 18,color: Colors.white,decoration: TextDecoration.underline),)));
+        child: Text('展开',style:TextStyle(fontSize: 18,color: Colors.grey[350],decoration: TextDecoration.underline),)));
     }
     return list;
   }

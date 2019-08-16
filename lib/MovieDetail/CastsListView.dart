@@ -28,7 +28,12 @@ class CastListView extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Text('演职表',style: TextStyle(fontSize: 24,color: Colors.white,fontWeight: FontWeight.bold),),
-              Icon(Icons.arrow_forward_ios,color: Colors.white,)
+              Row(
+                children: <Widget>[
+                  Text('全部${this.persons.length}人',style: TextStyle(fontSize: 16,color: Colors.white),),
+                  Icon(Icons.arrow_forward_ios,color: Colors.white,),
+                ],
+              )
             ],
           ),
           Container(
@@ -41,12 +46,14 @@ class CastListView extends StatelessWidget {
                   padding: const EdgeInsets.all(8),
                   child: Column(
                     children: <Widget>[
-                      Container(
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
                         child: FadeInImage.assetNetwork(
                           width: 80,
                           height: 120,
                           placeholder: 'images/image_placeholder.png',
                           image: this.persons[index].avatars.small,
+                          fit: BoxFit.fill,
                         ),
                       ),
                       Text('${this.persons[index].name}',style: TextStyle(color: Colors.white),),
