@@ -28,6 +28,7 @@ class MovieDetailData {
   final List<String> aka;
   final int wishCount;
   final List<Trailer> trailers;
+  final int commentsCount;
   
   MovieDetailData({this.rating,this.collectCount,this.imageURLs,
                   this.year,this.comments,this.alt,this.id,this.mobileUrl,
@@ -35,7 +36,7 @@ class MovieDetailData {
                   this.tags,this.durations,this.genres,this.hasTicket,
                   this.casts,this.countries,this.mainlandPubdate,this.photos,
                   this.summary,this.subtype,this.directors,this.popularReviews,
-                  this.ratingsCount,this.aka,this.wishCount,this.trailers});
+                  this.ratingsCount,this.aka,this.wishCount,this.trailers,this.commentsCount});
   
   factory MovieDetailData.fromJson(Map<String,dynamic> json) {
     
@@ -139,6 +140,7 @@ class MovieDetailData {
       aka: aka,
       wishCount: json['wish_count'] as int,
       trailers: trailers,
+      commentsCount: json['comments_count'] as int,
     );
   }
 }
