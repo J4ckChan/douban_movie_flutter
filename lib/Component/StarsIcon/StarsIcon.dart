@@ -32,6 +32,12 @@ class StarsIcon extends StatelessWidget {
     } else if (remainder > 0.5){
       subWidget.add(Icon(Icons.star_half,color:this.color != null? this.color:Colors.yellow[700],size: this.size,));
     }
+
+    double blackStarCount = (5 - integer - remainder);
+    while (blackStarCount >= 1) {
+      subWidget.add(Icon(Icons.star,color:Colors.black12,size: this.size,));
+      blackStarCount--;
+    }
     
     return subWidget;
   }
