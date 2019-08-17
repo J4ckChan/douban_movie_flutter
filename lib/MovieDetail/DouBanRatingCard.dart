@@ -1,4 +1,5 @@
 import 'package:douban_movie_flutter/Component/ColumnStack/ColumnStack.dart';
+import 'package:douban_movie_flutter/Component/HeaderWithArrow.dart';
 import 'package:douban_movie_flutter/Component/StarsIcon/StarsIcon.dart';
 import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
 import 'package:flutter/material.dart';
@@ -61,13 +62,7 @@ class DouBanRatingCard extends StatelessWidget {
           children: <Widget>[
             Padding(
               padding: const EdgeInsets.only(left: 24,right: 16,top: 8),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: <Widget>[
-                  Text('豆瓣评分',style: TextStyle(fontSize: 14,fontWeight: FontWeight.w700,color: Colors.white),),
-                  Icon(Icons.arrow_forward_ios,color: Colors.grey[200],size: 16,)
-                ],
-              ),
+              child: HeaderWithArrow(title: '豆瓣评分',titleSize: 14,),
             ),
             Padding(
               padding: const EdgeInsets.only(left: 16,right: 8,top: 8),
