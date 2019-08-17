@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/Component/HeaderWithArrow.dart';
 import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
 import 'package:flutter/material.dart';
 
@@ -24,18 +25,7 @@ class CastListView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('演职表',style: TextStyle(fontSize: 24,color: Colors.white,fontWeight: FontWeight.bold),),
-              Row(
-                children: <Widget>[
-                  Text('全部${this.persons.length}人',style: TextStyle(fontSize: 16,color: Colors.white),),
-                  Icon(Icons.arrow_forward_ios,color: Colors.white,),
-                ],
-              )
-            ],
-          ),
+          HeaderWithArrow(title: '演职表',subTitle: '全部${this.persons.length}人',),
           Container(
             height: 160,
             child: ListView.builder(

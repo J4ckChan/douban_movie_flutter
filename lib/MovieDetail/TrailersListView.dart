@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/Component/HeaderWithArrow.dart';
 import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
 import 'package:flutter/material.dart';
 
@@ -15,13 +16,7 @@ class TrailersListView extends StatelessWidget {
       padding: const EdgeInsets.only(left:16.0,right: 16.0,top: 8.0),
       child: Column(
         children: <Widget>[
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text('预告片',style: TextStyle(fontSize: 24,color: Colors.white,fontWeight: FontWeight.bold),),
-              Icon(Icons.arrow_forward_ios,color: Colors.white,),
-            ],
-          ),
+          HeaderWithArrow(title: '预告片',),
           Container(
             height: 180,
             child: ListView.builder(
