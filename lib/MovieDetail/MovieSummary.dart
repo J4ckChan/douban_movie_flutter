@@ -56,7 +56,7 @@ class _MovieSummaryState extends State<MovieSummary> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children:<Widget>[
         Padding(
-          padding: const EdgeInsets.only(left: 16,top: 8),
+          padding: const EdgeInsets.only(left: 16,top: 16),
           child: Text('剧情简介',style: TextStyle(fontSize: 24,color: Colors.white,fontWeight: FontWeight.bold),),
         ),
         Padding(
