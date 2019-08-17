@@ -27,6 +27,7 @@ class MovieDetailData {
   final int ratingsCount;
   final List<String> aka;
   final int wishCount;
+  final List<Trailer> trailers;
   
   MovieDetailData({this.rating,this.collectCount,this.imageURLs,
                   this.year,this.comments,this.alt,this.id,this.mobileUrl,
@@ -34,7 +35,7 @@ class MovieDetailData {
                   this.tags,this.durations,this.genres,this.hasTicket,
                   this.casts,this.countries,this.mainlandPubdate,this.photos,
                   this.summary,this.subtype,this.directors,this.popularReviews,
-                  this.ratingsCount,this.aka,this.wishCount});
+                  this.ratingsCount,this.aka,this.wishCount,this.trailers});
   
   factory MovieDetailData.fromJson(Map<String,dynamic> json) {
     
@@ -102,6 +103,13 @@ class MovieDetailData {
       aka.add(item);
     }
 
+    //List<Trailer> -------------------------------
+    List<Trailer> trailers = List();
+    for (dynamic trailerData in json["trailers"]) {
+      Trailer trailer = Trailer.fromJson(trailerData);
+      trailers.add(trailer);
+    }
+
     return MovieDetailData(
       rating: rating,
       collectCount: json['collect_count'] as int,
@@ -130,6 +138,7 @@ class MovieDetailData {
       ratingsCount: json['ratings_count'] as int,
       aka: aka,
       wishCount: json['wish_count'] as int,
+      trailers: trailers,
     );
   }
 }
@@ -304,4 +313,29 @@ class Photo {
       icon: json['icon'] as String,
     );
   }
+}
+
+class Trailer {
+  final String medium;
+  final String title;
+  final String subjectID;
+  final String alt;
+  final String small;
+  final String resourceUrl;
+  final String id;
+
+  Trailer({this.medium,this.title,this.subjectID,this.alt,this.small,this.resourceUrl,this.id});
+
+  factory Trailer.fromJson(Map<String,dynamic> json) {
+    return Trailer(
+      medium: json['medium'] as String,
+      title: json['title'] as String,
+      subjectID: json['subject_id'] as String,
+      alt: json['alt'] as String,
+      small: json['small'] as String,
+      resourceUrl: json['resource_url'] as String,
+      id: json['id'] as String,
+    );
+  }
+  
 }
