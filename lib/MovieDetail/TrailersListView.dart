@@ -1,5 +1,6 @@
 import 'package:douban_movie_flutter/Component/HeaderWithArrow.dart';
 import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
+import 'package:douban_movie_flutter/MovieDetail/VideoPlayerPage.dart';
 import 'package:flutter/material.dart';
 
 class TrailersListView extends StatelessWidget {
@@ -25,14 +26,21 @@ class TrailersListView extends StatelessWidget {
               itemBuilder: (context,index){
                 return Padding(
                   padding: const EdgeInsets.all(4),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(2),
-                    child: FadeInImage.assetNetwork(
-                      height: 120,
-                      width: 260,
-                      fit: BoxFit.fill,
-                      placeholder: 'images/image_placeholder.png',
-                      image: this.movieDetailData.trailers[index].medium,
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.push(context,MaterialPageRoute(
+                        builder: (context) => VideoPlayerPage(url: this.movieDetailData.trailers[index].resourceUrl)
+                      ));
+                    },
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(2),
+                      child: FadeInImage.assetNetwork(
+                        height: 120,
+                        width: 260,
+                        fit: BoxFit.fill,
+                        placeholder: 'images/image_placeholder.png',
+                        image: this.movieDetailData.trailers[index].medium,
+                      ),
                     ),
                   ),
                 );
