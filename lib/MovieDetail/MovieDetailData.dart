@@ -150,7 +150,7 @@ class Rating {
   final int max;
   final double average;
   final int min;
-  final double value;
+  final dynamic value;
   final Map details;
 
   Rating({this.max,this.average,this.min,this.value,this.details});
@@ -160,7 +160,7 @@ class Rating {
       max: json['max'] as int,
       average: json['average'] as double,
       min: json['min'] as int,
-      value: json['value'] as double,
+      value: json['value'] as dynamic,
       details: json['details'] as Map,
     );
   }
