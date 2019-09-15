@@ -148,7 +148,7 @@ class MovieDetailData {
 
 class Rating {
   final int max;
-  final double average;
+  final dynamic average;
   final int min;
   final dynamic value;
   final Map details;
@@ -158,7 +158,7 @@ class Rating {
   factory Rating.fromJson(Map<String,dynamic> json) {
     return Rating(
       max: json['max'] as int,
-      average: json['average'] as double,
+      average: json['average'] as dynamic,
       min: json['min'] as int,
       value: json['value'] as dynamic,
       details: json['details'] as Map,
