@@ -35,7 +35,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
 
   List<Widget> _barItemPage = [HotWidget(),SearchMovieAndTV(),Mine()];
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
   
   @override
   Widget build(BuildContext context) {
