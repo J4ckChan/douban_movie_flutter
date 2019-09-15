@@ -26,23 +26,29 @@ class TrailersListView extends StatelessWidget {
               itemBuilder: (context,index){
                 return Padding(
                   padding: const EdgeInsets.all(4),
-                  child: GestureDetector(
-                    onTap: (){
-                      Navigator.push(context,MaterialPageRoute(
-                        builder: (context) => VideoPlayerPage(url: this.movieDetailData.trailers[index].resourceUrl)
-                      ));
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(2),
-                      child: FadeInImage.assetNetwork(
-                        height: 120,
-                        width: 260,
-                        fit: BoxFit.fill,
-                        placeholder: 'images/image_placeholder.png',
-                        image: this.movieDetailData.trailers[index].medium,
-                      ),
+                  child: Stack(
+                      alignment: AlignmentDirectional.center,
+                      children: <Widget>[
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(2),
+                          child: FadeInImage.assetNetwork(
+                            height: 160,
+                            width: 260,
+                            fit: BoxFit.fill,
+                            placeholder: 'images/image_placeholder.png',
+                            image: this.movieDetailData.trailers[index].medium,
+                          ),
+                        ),
+                        FlatButton(
+                          onPressed: (){
+                            Navigator.push(context,MaterialPageRoute(
+                            builder: (context) => VideoPlayerPage(url: this.movieDetailData.trailers[index].resourceUrl)
+                          ));
+                        },
+                          child: Icon(Icons.play_circle_outline,color: Colors.white70,size: 42,)
+                        )
+                      ],
                     ),
-                  ),
                 );
               },
             ),
