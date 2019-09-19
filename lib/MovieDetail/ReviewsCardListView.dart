@@ -23,7 +23,7 @@ class ReviewsCardListView extends StatelessWidget {
         children: <Widget>[
           Padding(
             padding: const EdgeInsets.all(16.0),
-            child: Text('影评列表',style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),),
+            child: Text('影评列表',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
           ),
           Container(
             height: popularReviews.length * (reviewHeight + 10),
@@ -60,16 +60,16 @@ class ReviewsCardListView extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(top: 8,left: 16,right: 16),
                           child: Text(
-                            popularReviews[index].title,
-                            style: TextStyle(fontSize: 22,fontWeight: FontWeight.bold),
+                            review.title,
+                            style: TextStyle(fontSize: 18,fontWeight: FontWeight.bold),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8,left: 16,right: 16),
                           child: Text(
-                            popularReviews[index].summary,
-                            style: TextStyle(fontSize: 18),
+                            review.summary,
+                            style: TextStyle(fontSize: 16),
                             overflow: TextOverflow.ellipsis,
                             maxLines: 4,
                           ),
