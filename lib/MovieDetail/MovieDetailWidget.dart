@@ -4,6 +4,7 @@ import 'package:douban_movie_flutter/MovieDetail/DouBanRatingCard.dart';
 import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
 import 'package:douban_movie_flutter/MovieDetail/MovieSummary.dart';
 import 'package:douban_movie_flutter/MovieDetail/PosterAndTitle.dart';
+import 'package:douban_movie_flutter/MovieDetail/ReviewsCardListView.dart';
 import 'package:douban_movie_flutter/MovieDetail/TrailersListView.dart';
 import 'package:flutter/material.dart';
 
@@ -27,6 +28,7 @@ class MovieDetailWidget extends StatelessWidget {
           CastListView(movieDetailData: movieDetailData,),
           TrailersListView(movieDetailData: movieDetailData),
           CommentsListView(movieDetailData: movieDetailData),
+          ReviewsCardListView(popularReviews: movieDetailData.popularReviews,)
         ],
       ),
     );
