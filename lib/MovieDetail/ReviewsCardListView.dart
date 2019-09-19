@@ -1,3 +1,4 @@
+import 'package:douban_movie_flutter/Component/StarsIcon/StarsIcon.dart';
 import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
 import 'package:flutter/material.dart';
 
@@ -8,7 +9,7 @@ class ReviewsCardListView extends StatelessWidget {
   }) : super(key: key);
 
   final List<Review> popularReviews;
-  final double reviewHeight = 160.0;
+  final double reviewHeight = 180.0;
 
   @override
   Widget build(BuildContext context) {
@@ -30,6 +31,7 @@ class ReviewsCardListView extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               itemCount: popularReviews.length,
               itemBuilder: (context,index){
+                Review review = popularReviews[index];
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 10),
                   child: Container(
@@ -39,6 +41,22 @@ class ReviewsCardListView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
+                        Padding(
+                          padding: const EdgeInsets.only(left: 16,top: 8),
+                          child: Row(
+                            children: <Widget>[
+                              CircleAvatar(
+                                radius: 12,
+                                backgroundImage: NetworkImage(review.author.avatar),
+                              ),
+                              Padding(
+                                padding: const EdgeInsets.only(left: 8,right: 8),
+                                child: Text(review.author.name + "  看过"),
+                              ),
+                              StarsIcon(rating: review.rating.value,size: 14,)
+                            ],
+                          ),
+                        ),
                         Padding(
                           padding: const EdgeInsets.only(top: 8,left: 16,right: 16),
                           child: Text(
