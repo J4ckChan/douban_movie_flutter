@@ -5,9 +5,9 @@ import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
 import 'package:flutter/material.dart';
 
 class DouBanRatingCard extends StatelessWidget {
-  const DouBanRatingCard({
+  const DouBanRatingCard(
+    this.movieDetailData,{
     Key key,
-    @required this.movieDetailData,
   }) : super(key: key);
 
   final MovieDetailData movieDetailData;

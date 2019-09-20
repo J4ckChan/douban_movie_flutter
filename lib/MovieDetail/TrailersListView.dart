@@ -4,9 +4,9 @@ import 'package:douban_movie_flutter/MovieDetail/VideoPlayerPage.dart';
 import 'package:flutter/material.dart';
 
 class TrailersListView extends StatelessWidget {
-  const TrailersListView({
+  const TrailersListView(
+    this.movieDetailData,{
     Key key,
-    @required this.movieDetailData,
   }) : super(key: key);
 
   final MovieDetailData movieDetailData;

@@ -3,9 +3,9 @@ import 'package:video_player/video_player.dart';
 
 class VideoPlayerPage extends StatefulWidget {
 
-  const VideoPlayerPage({
+  const VideoPlayerPage(
+    this.url,{
     Key key,
-    @required this.url,
   }):super(key:key);
 
   final String url;

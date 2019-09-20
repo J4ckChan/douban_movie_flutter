@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MovieSummary extends StatefulWidget {
-  const MovieSummary({
+  const MovieSummary(
+    this.summary,{
     Key key,
-    @required this.summary,
   }) : super(key: key);
 
   final String summary;

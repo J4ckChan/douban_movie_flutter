@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class CommentsListView extends StatefulWidget {
 
-  const CommentsListView({
+  const CommentsListView(
+    this.movieDetailData,{
     Key key,
-    @required this.movieDetailData,
   }) : super(key: key);
 
   final MovieDetailData movieDetailData;

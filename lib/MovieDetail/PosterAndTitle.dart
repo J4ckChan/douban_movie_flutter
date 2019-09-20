@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'MovieDetailData.dart';
 
 class PosterAndTitle extends StatelessWidget {
-  const PosterAndTitle({
+  const PosterAndTitle(
+    this.movieDetailData,{
     Key key,
-    @required this.movieDetailData,
   }) : super(key: key);
 
   final MovieDetailData movieDetailData;

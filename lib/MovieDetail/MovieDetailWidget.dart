@@ -8,27 +8,39 @@ import 'package:douban_movie_flutter/MovieDetail/ReviewsCardListView.dart';
 import 'package:douban_movie_flutter/MovieDetail/TrailersListView.dart';
 import 'package:flutter/material.dart';
 
-class MovieDetailWidget extends StatelessWidget {
+class MovieDetailWidget extends StatefulWidget {
 
   const MovieDetailWidget({
     Key key,
-    @required this.movieDetailData,
+    @required this.data,
   }):super (key:key);
 
-  final MovieDetailData movieDetailData;
+  final MovieDetailData data;
+
+  @override
+  _MovieDetailWidgetState createState() => _MovieDetailWidgetState();
+}
+
+class _MovieDetailWidgetState extends State<MovieDetailWidget> {
+  
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          PosterAndTitle(movieDetailData: movieDetailData),
-          DouBanRatingCard(movieDetailData: movieDetailData),
-          MovieSummary(summary: movieDetailData.summary,),
-          CastListView(movieDetailData: movieDetailData,),
-          TrailersListView(movieDetailData: movieDetailData),
-          CommentsListView(movieDetailData: movieDetailData),
-          ReviewsCardListView(popularReviews: movieDetailData.popularReviews,)
+          PosterAndTitle(widget.data),
+          DouBanRatingCard( widget.data),
+          MovieSummary(widget.data.summary,),
+          CastListView(widget.data,),
+          TrailersListView(widget.data),
+          CommentsListView(widget.data),
+          ReviewsCardListView(
+            widget.data.popularReviews,
+            onTap: (){
+
+            },
+          )
         ],
       ),
     );

@@ -3,12 +3,15 @@ import 'package:douban_movie_flutter/MovieDetail/MovieDetailData.dart';
 import 'package:flutter/material.dart';
 
 class ReviewsCardListView extends StatelessWidget {
-  const ReviewsCardListView({
-    Key key,
-    @required this.popularReviews,
-  }) : super(key: key);
+  
+  const ReviewsCardListView(
+    this.popularReviews,{
+      Key key,
+      this.onTap,
+    }) : super(key: key);
 
   final List<Review> popularReviews;
+  final VoidCallback onTap;
   final double reviewHeight = 180.0;
 
   @override
@@ -21,9 +24,12 @@ class ReviewsCardListView extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Text('影评列表',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+          GestureDetector(
+            onTap: this.onTap,
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text('影评列表',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+            ),
           ),
           Container(
             height: popularReviews.length * (reviewHeight + 10),

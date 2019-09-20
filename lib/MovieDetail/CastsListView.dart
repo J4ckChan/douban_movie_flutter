@@ -5,9 +5,9 @@ import 'package:flutter/material.dart';
 
 class CastListView extends StatelessWidget {
 
-  const CastListView({
+  const CastListView(
+    this.movieDetailData,{
     Key key,
-    @required this.movieDetailData,
   }):super(key:key);
 
   final MovieDetailData movieDetailData;
