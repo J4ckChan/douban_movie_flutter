@@ -44,7 +44,7 @@ class _MovieDetailState extends State<MovieDetail> {
             print(snapshot.error);
           }
           return snapshot.hasData 
-          ? MovieDetailWidget(movieDetailData: snapshot.data,)
+          ? MovieDetailWidget(snapshot.data,)
           :Center(child: CircularProgressIndicator(),);
         },
       )

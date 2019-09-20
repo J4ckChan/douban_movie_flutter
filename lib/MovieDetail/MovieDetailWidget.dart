@@ -10,9 +10,9 @@ import 'package:flutter/material.dart';
 
 class MovieDetailWidget extends StatefulWidget {
 
-  const MovieDetailWidget({
+  const MovieDetailWidget(
+    this.data,{
     Key key,
-    @required this.data,
   }):super (key:key);
 
   final MovieDetailData data;

@@ -42,7 +42,7 @@ class TrailersListView extends StatelessWidget {
                         FlatButton(
                           onPressed: (){
                             Navigator.push(context,MaterialPageRoute(
-                            builder: (context) => VideoPlayerPage(url: this.movieDetailData.trailers[index].resourceUrl)
+                            builder: (context) => VideoPlayerPage(this.movieDetailData.trailers[index].resourceUrl)
                           ));
                         },
                           child: Icon(Icons.play_circle_outline,color: Colors.white70,size: 42,)
