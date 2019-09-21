@@ -33,6 +33,10 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
   bool reviewCardOn = true;
   final double endPositionY = kBottomNavigationBarHeight + 34.0;
 
+  double reviewsCardInPositionX = 1800;
+  var columnKey = GlobalKey();
+  double columnHeight = -1.0;
+
   @override
   void initState() {
     super.initState();
@@ -47,10 +51,16 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
       });
 
     scrollController.addListener((){
-      print(scrollController.offset);
-      bool isOn = scrollController.offset > 1800 && reviewCardOn;
-      bool isIn = scrollController.offset < 1800 && !reviewCardOn;
+      if (columnHeight < 0) {
+        columnHeight = columnKey.currentContext.findRenderObject().paintBounds.height;
+        reviewsCardInPositionX = columnHeight - (0.9*widget.size.height - endPositionY);
+      }
+      // print("______ columnHeight:$reviewsCardInPositionX");
+      // print(scrollController.offset);
+      bool isOn = scrollController.offset > reviewsCardInPositionX && reviewCardOn;
+      bool isIn = scrollController.offset < reviewsCardInPositionX && !reviewCardOn;
       if (isOn || isIn) {
+        // print("isOn || isIn $reviewsCardInPositionX");
         setState(() => reviewCardOn = !reviewCardOn);
       }
     });
@@ -66,14 +76,14 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
         reviewCardUp = !reviewCardUp;
       }};
 
-    var reviewsCard = 
-          ReviewsCardListView(widget.data.popularReviews, onTap: onTap);
+    var reviewsCard = ReviewsCardListView(widget.data.popularReviews, onTap: onTap);
 
     return Stack(
       children: <Widget>[
         SingleChildScrollView(
           controller: scrollController,
           child: Column(
+            key: columnKey,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               PosterAndTitle(widget.data),
