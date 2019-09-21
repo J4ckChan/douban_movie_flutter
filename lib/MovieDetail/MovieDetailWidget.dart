@@ -27,7 +27,9 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
 
   Animation<double> animation;
   AnimationController animationController;
+  ScrollController scrollController = ScrollController();
 
+  bool reviewCardUp = false;
   bool reviewCardOn = true;
   final double endPositionY = kBottomNavigationBarHeight + 34.0;
 
@@ -43,15 +45,35 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
           
         });
       });
+
+    scrollController.addListener((){
+      print(scrollController.offset);
+      bool isOn = scrollController.offset > 1800 && reviewCardOn;
+      bool isIn = scrollController.offset < 1800 && !reviewCardOn;
+      if (isOn || isIn) {
+        setState(() => reviewCardOn = !reviewCardOn);
+      }
+    });
   }
 
   
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Stack(
-        children: <Widget>[
-          Column(
+
+    VoidCallback onTap = (){ 
+      if (reviewCardOn) {
+        reviewCardUp ? animationController.reverse():animationController.forward();
+        reviewCardUp = !reviewCardUp;
+      }};
+
+    var reviewsCard = 
+          ReviewsCardListView(widget.data.popularReviews, onTap: onTap);
+
+    return Stack(
+      children: <Widget>[
+        SingleChildScrollView(
+          controller: scrollController,
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               PosterAndTitle(widget.data),
@@ -60,26 +82,19 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
               CastListView(widget.data,),
               TrailersListView(widget.data),
               CommentsListView(widget.data),
+              reviewCardOn ? Container() : reviewsCard, 
             ],
           ),
-          Positioned(
-            top: animation.value,
-            child:ReviewsCardListView(
-              widget.data.popularReviews,
-              onTap: (){
-                reviewCardOn ? animationController.forward():animationController.reverse();
-                reviewCardOn = !reviewCardOn;
-              },
-            ) ,
-          ),
-        ]
-      ),
+        ),
+        reviewCardOn? Positioned(top: animation.value,child:reviewsCard): Container(),
+      ]
     );
   }
 
   @override
   void dispose() {
     this.animationController.dispose();
+    this.scrollController.dispose();
     super.dispose();
   }
 }
