@@ -11,38 +11,75 @@ import 'package:flutter/material.dart';
 class MovieDetailWidget extends StatefulWidget {
 
   const MovieDetailWidget(
-    this.data,{
+    this.data,
+    this.size,{
     Key key,
   }):super (key:key);
 
   final MovieDetailData data;
+  final Size size;
 
   @override
   _MovieDetailWidgetState createState() => _MovieDetailWidgetState();
 }
 
-class _MovieDetailWidgetState extends State<MovieDetailWidget> {
+class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTickerProviderStateMixin{
+
+  Animation<double> animation;
+  AnimationController animationController;
+
+  bool reviewCardOn = true;
+  final double endPositionY = kBottomNavigationBarHeight + 34.0;
+
+  @override
+  void initState() {
+    super.initState();
+    animationController = AnimationController(
+      duration: const Duration(milliseconds: 300),
+      vsync: this);
+    animation = Tween(begin: 0.9 * widget.size.height - endPositionY, end:2.0).animate(animationController)
+      ..addListener((){
+        setState(() {
+          
+        });
+      });
+  }
+
   
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Stack(
         children: <Widget>[
-          PosterAndTitle(widget.data),
-          DouBanRatingCard( widget.data),
-          MovieSummary(widget.data.summary,),
-          CastListView(widget.data,),
-          TrailersListView(widget.data),
-          CommentsListView(widget.data),
-          ReviewsCardListView(
-            widget.data.popularReviews,
-            onTap: (){
-
-            },
-          )
-        ],
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              PosterAndTitle(widget.data),
+              DouBanRatingCard( widget.data),
+              MovieSummary(widget.data.summary,),
+              CastListView(widget.data,),
+              TrailersListView(widget.data),
+              CommentsListView(widget.data),
+            ],
+          ),
+          Positioned(
+            top: animation.value,
+            child:ReviewsCardListView(
+              widget.data.popularReviews,
+              onTap: (){
+                reviewCardOn ? animationController.forward():animationController.reverse();
+                reviewCardOn = !reviewCardOn;
+              },
+            ) ,
+          ),
+        ]
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    this.animationController.dispose();
+    super.dispose();
   }
 }
