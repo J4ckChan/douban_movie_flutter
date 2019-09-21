@@ -62,7 +62,7 @@ class _CommentsListViewState extends State<CommentsListView> {
                   height: totalHeight,
                   child: ListView.separated(
                     physics: NeverScrollableScrollPhysics(),
-                    itemCount: widget.movieDetailData.comments.length> 4? 4:widget.movieDetailData.comments.length,
+                    itemCount: widget.movieDetailData.comments.length > 4? 4:widget.movieDetailData.comments.length,
                     itemBuilder: (context,index){
                       Comment comment = widget.movieDetailData.comments[index];
                       return CommentWidget(comment: comment);
@@ -127,7 +127,7 @@ class CommentWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(comment.author.name,style:TextStyle(color:Colors.white,fontSize: 18,fontWeight: FontWeight.w500)),
-                    StarsIcon(rating:comment.rating.value,size: 12,),
+                    StarsIcon(rating:comment.rating.average,size: 12,),
                   ],
                 ),
               ),
