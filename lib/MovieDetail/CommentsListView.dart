@@ -45,7 +45,7 @@ class _CommentsListViewState extends State<CommentsListView> {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16.0),
       child: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
@@ -118,7 +118,7 @@ class CommentWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: <Widget>[
               CircleAvatar(
-                radius: 20,
+                radius: 20.0,
                 backgroundImage: NetworkImage(comment.author.avatar),
               ),
               Padding(
