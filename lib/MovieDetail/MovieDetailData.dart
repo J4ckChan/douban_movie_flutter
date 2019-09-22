@@ -150,17 +150,21 @@ class Rating {
   final int max;
   final dynamic average;
   final int min;
-  // final dynamic value;
+  final dynamic value;
   final Map details;
 
-  Rating({this.max,this.average,this.min,this.details});
+  Rating({this.max,this.average,this.min,this.value,this.details});
 
   factory Rating.fromJson(Map<String,dynamic> json) {
+
+    dynamic value = json['value'];
+    if (value is int) { value = value.toDouble(); }
+
     return Rating(
       max: json['max'] as int,
       average: json['average'] as dynamic,
       min: json['min'] as int,
-      // value: json['value'] as dynamic,
+      value: value,
       details: json['details'] as Map,
     );
   }

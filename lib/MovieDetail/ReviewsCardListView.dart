@@ -62,7 +62,7 @@ class ReviewsCardListView extends StatelessWidget {
                                   padding: const EdgeInsets.only(left: 8,right: 8),
                                   child: Text(review.author.name + "  看过"),
                                 ),
-                                StarsIcon(rating: review.rating.average,size: 14,)
+                                StarsIcon(rating: review.rating.value,size: 14,)
                               ],
                             ),
                           ),

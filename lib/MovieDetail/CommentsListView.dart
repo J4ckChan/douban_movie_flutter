@@ -127,7 +127,6 @@ class CommentWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: <Widget>[
                     Text(comment.author.name,style:TextStyle(color:Colors.white,fontSize: 18,fontWeight: FontWeight.w500)),
-                    StarsIcon(rating:comment.rating.average,size: 12,),
                   ],
                 ),
               ),
