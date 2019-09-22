@@ -13,7 +13,7 @@ class PosterAndTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.only(top: 16.0,left: 16.0,right: 16.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
@@ -26,11 +26,11 @@ class PosterAndTitle extends StatelessWidget {
                 placeholder: 'images/image_placeholder.png',
                 image: this.movieDetailData.imageURLs.smallURL,
                 fit: BoxFit.fill,
-              ),
+                ),
 	            ),
 	          ),
           Padding(
-            padding: const EdgeInsets.only(left: 16),
+            padding: const EdgeInsets.only(left: 16.0),
             child: Container(
               height: 180,
               child: Column(
