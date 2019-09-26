@@ -76,7 +76,7 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
         reviewCardUp = !reviewCardUp;
       }};
 
-    var reviewsCard = ReviewsCardListView(widget.data.popularReviews, onTap: onTap);
+    var reviewsCard = ReviewsCardListView(widget.data.popularReviews, onTap: onTap,scrollBool: reviewCardUp,);
 
     return Stack(
       children: <Widget>[

@@ -4,37 +4,59 @@ import 'package:flutter/material.dart';
 
 class ReviewsCardListView extends StatelessWidget {
   
-  const ReviewsCardListView(
+  ReviewsCardListView(
     this.popularReviews,{
       Key key,
       this.onTap,
+      this.onVerticalDragUpdate,
+      this.scrollBool = true,
     }) : super(key: key);
 
   final List<Review> popularReviews;
   final VoidCallback onTap;
+  final GestureDragUpdateCallback onVerticalDragUpdate;
   final double reviewHeight = 180.0;
+  bool scrollBool;
 
   @override
   Widget build(BuildContext context) {
+
+    double listViewHeight = this.scrollBool? MediaQuery.of(context).size.height - kBottomNavigationBarHeight - 140: popularReviews.length * (reviewHeight + 10.0);
+
     return GestureDetector(
       onTap: this.onTap,
+      onVerticalDragUpdate: this.onVerticalDragUpdate,
       child: Container(
         decoration: BoxDecoration(
           color: Color(0xF7F5F5FF),
           borderRadius: BorderRadius.vertical(top: Radius.circular(16.0)),
         ),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text('影评列表',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              padding: const EdgeInsets.only(top:4.0),
+              child: Container(
+                width: 60,
+                height: 6,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(4.0),
+                  color: Colors.grey[350],
+                ),
+              ),
             ),
             Container(
-              height: popularReviews.length * (reviewHeight + 10.0),
+              width: MediaQuery.of(context).size.width,
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Text('影评列表',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+              ),
+            ),
+            Container(
+              height: listViewHeight,
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: this.scrollBool? AlwaysScrollableScrollPhysics():NeverScrollableScrollPhysics(),
                 itemCount: popularReviews.length,
                 itemBuilder: (context,index){
                   Review review = popularReviews[index];
@@ -90,6 +112,7 @@ class ReviewsCardListView extends StatelessWidget {
                 },
               ),
             ),
+            Padding(padding: const EdgeInsets.only(top: 44),)
           ],
         ),
       ),
