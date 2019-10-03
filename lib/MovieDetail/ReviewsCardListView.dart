@@ -8,11 +8,13 @@ class ReviewsCardListView extends StatelessWidget {
     this.popularReviews,{
       Key key,
       this.onVerticalDragUpdate,
+      this.onVerticalDragEnd,
       this.scrollBool = true,
     }) : super(key: key);
 
   final List<Review> popularReviews;
   final GestureDragUpdateCallback onVerticalDragUpdate;
+  final GestureDragEndCallback onVerticalDragEnd;
   final double reviewHeight = 180.0;
   bool scrollBool;
 
@@ -22,6 +24,7 @@ class ReviewsCardListView extends StatelessWidget {
     double listViewHeight = this.scrollBool? MediaQuery.of(context).size.height - kBottomNavigationBarHeight - 140: popularReviews.length * (reviewHeight + 10.0);
 
     return GestureDetector(
+      onVerticalDragEnd: this.onVerticalDragEnd,
       onVerticalDragUpdate: this.onVerticalDragUpdate,
       child: Container(
         decoration: BoxDecoration(

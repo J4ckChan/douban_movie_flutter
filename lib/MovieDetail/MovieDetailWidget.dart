@@ -23,9 +23,11 @@ class MovieDetailWidget extends StatefulWidget {
   _MovieDetailWidgetState createState() => _MovieDetailWidgetState();
 }
 
-class _MovieDetailWidgetState extends State<MovieDetailWidget> {
+class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTickerProviderStateMixin {
 
   ScrollController scrollController = ScrollController();
+  Animation _animation;
+  AnimationController _animationController;
 
   bool reviewCardUp = false;
   bool reviewCardOn = true;
@@ -35,16 +37,20 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> {
   var columnKey = GlobalKey();
   double columnHeight = -1.0;
   double reviewsCardPostitonY = 0.0;
+  double startPositionY = 0.0;
 
   @override
   void initState() {
     super.initState();
-    reviewsCardPostitonY = 0.9 * widget.size.height - endPositionY;
+    startPositionY = 0.9*widget.size.height - endPositionY;
+    reviewsCardPostitonY = startPositionY;
+
+    _animationController = AnimationController(duration: const Duration(milliseconds: 500),vsync: this);
 
     scrollController.addListener((){
       if (columnHeight < 0) {
         columnHeight = columnKey.currentContext.findRenderObject().paintBounds.height;
-        reviewsCardInPositionX = columnHeight - (0.9*widget.size.height - endPositionY);
+        reviewsCardInPositionX = columnHeight - startPositionY;
       }
       // print("______ columnHeight:$reviewsCardInPositionX");
       // print(scrollController.offset);
@@ -62,16 +68,31 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> {
   Widget build(BuildContext context) {
 
     GestureDragUpdateCallback onVerticalDragUpdate = (DragUpdateDetails details) {
-      print('${details.delta},${details.globalPosition},${details.localPosition}');
       setState(() {
         double temp = reviewsCardPostitonY + details.delta.dy;
-        if (temp > 2 && temp < 0.9 * widget.size.height - endPositionY) {
+        if (temp > 2 && temp < startPositionY) {
           reviewsCardPostitonY = temp;
+          _animationController.forward();
         }
       });
     };
 
-    var reviewsCard = ReviewsCardListView(widget.data.popularReviews,scrollBool: reviewCardUp,onVerticalDragUpdate: onVerticalDragUpdate,);
+    GestureDragEndCallback onVerticalDragEnd = (DragEndDetails details){
+      double value = (startPositionY + 2.0)/2.0;
+      double endValue = 2.0;
+      if (reviewsCardPostitonY > value) {
+        endValue = startPositionY;
+      }
+      _animation = Tween(begin: reviewsCardPostitonY,end: endValue).animate(_animationController);
+      setState(() {
+        reviewsCardPostitonY = _animation.value;
+      });
+    };
+
+    var reviewsCard = ReviewsCardListView(widget.data.popularReviews,
+                        scrollBool: reviewCardUp,
+                        onVerticalDragUpdate: onVerticalDragUpdate,
+                        onVerticalDragEnd: onVerticalDragEnd,);
 
     return Stack(
       children: <Widget>[
@@ -98,6 +119,7 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> {
 
   @override
   void dispose() {
+    _animationController.dispose();
     this.scrollController.dispose();
     super.dispose();
   }
