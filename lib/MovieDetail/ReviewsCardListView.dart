@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 
 class ReviewsCardListView extends StatelessWidget {
   
-  ReviewsCardListView(
+ReviewsCardListView(
     this.popularReviews,{
       Key key,
       this.onTap,

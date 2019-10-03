@@ -36,6 +36,7 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
   double reviewsCardInPositionX = 1800;
   var columnKey = GlobalKey();
   double columnHeight = -1.0;
+  double reviewsCardPostitonY = 0.0;
 
   @override
   void initState() {
@@ -43,7 +44,8 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
     animationController = AnimationController(
       duration: const Duration(milliseconds: 300),
       vsync: this);
-    animation = Tween(begin: 0.9 * widget.size.height - endPositionY, end:2.0).animate(animationController)
+    reviewsCardPostitonY = 0.9 * widget.size.height - endPositionY;
+    animation = Tween(begin: reviewsCardPostitonY, end:2.0).animate(animationController)
       ..addListener((){
         setState(() {
           
@@ -76,7 +78,17 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
         reviewCardUp = !reviewCardUp;
       }};
 
-    var reviewsCard = ReviewsCardListView(widget.data.popularReviews, onTap: onTap,scrollBool: reviewCardUp,);
+    GestureDragUpdateCallback onVerticalDragUpdate = (DragUpdateDetails details) {
+      print('${details.delta},${details.globalPosition},${details.localPosition}');
+      setState(() {
+        double temp = reviewsCardPostitonY + details.delta.dy;
+        if (temp > 2 && temp < 0.9 * widget.size.height - endPositionY) {
+          reviewsCardPostitonY = temp;
+        }
+      });
+    };
+
+    var reviewsCard = ReviewsCardListView(widget.data.popularReviews, onTap: onTap,scrollBool: reviewCardUp,onVerticalDragUpdate: onVerticalDragUpdate,);
 
     return Stack(
       children: <Widget>[
@@ -96,7 +108,7 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
             ],
           ),
         ),
-        reviewCardOn? Positioned(top: animation.value,child:reviewsCard): Container(),
+        reviewCardOn? Positioned(top: reviewsCardPostitonY,child:reviewsCard): Container(),
       ]
     );
   }
