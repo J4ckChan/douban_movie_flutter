@@ -9,12 +9,11 @@ import 'package:douban_movie_flutter/MovieDetail/TrailersListView.dart';
 import 'package:flutter/material.dart';
 
 class MovieDetailWidget extends StatefulWidget {
-
   const MovieDetailWidget(
     this.data,
-    this.size,{
+    this.size, {
     Key key,
-  }):super (key:key);
+  }) : super(key: key);
 
   final MovieDetailData data;
   final Size size;
@@ -23,8 +22,8 @@ class MovieDetailWidget extends StatefulWidget {
   _MovieDetailWidgetState createState() => _MovieDetailWidgetState();
 }
 
-class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTickerProviderStateMixin {
-
+class _MovieDetailWidgetState extends State<MovieDetailWidget>
+    with SingleTickerProviderStateMixin {
   ScrollController scrollController = ScrollController();
   Animation _animation;
   AnimationController _animationController;
@@ -42,79 +41,84 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
   @override
   void initState() {
     super.initState();
-    startPositionY = 0.9*widget.size.height - endPositionY;
+    startPositionY = 0.9 * widget.size.height - endPositionY;
     reviewsCardPostitonY = startPositionY;
 
-    _animationController = AnimationController(duration: const Duration(milliseconds: 500),vsync: this);
+    _animationController = AnimationController(
+        duration: const Duration(milliseconds: 500), vsync: this);
 
-    scrollController.addListener((){
+    scrollController.addListener(() {
       if (columnHeight < 0) {
-        columnHeight = columnKey.currentContext.findRenderObject().paintBounds.height;
+        columnHeight =
+            columnKey.currentContext.findRenderObject().paintBounds.height;
         reviewsCardInPositionX = columnHeight - startPositionY;
       }
-      // print("______ columnHeight:$reviewsCardInPositionX");
-      // print(scrollController.offset);
-      bool isOn = scrollController.offset > reviewsCardInPositionX && reviewCardOn;
-      bool isIn = scrollController.offset < reviewsCardInPositionX && !reviewCardOn;
+      bool isOn =
+          scrollController.offset > reviewsCardInPositionX && reviewCardOn;
+      bool isIn =
+          scrollController.offset < reviewsCardInPositionX && !reviewCardOn;
       if (isOn || isIn) {
-        // print("isOn || isIn $reviewsCardInPositionX");
         setState(() => reviewCardOn = !reviewCardOn);
       }
     });
   }
 
-  
   @override
   Widget build(BuildContext context) {
-
-    GestureDragUpdateCallback onVerticalDragUpdate = (DragUpdateDetails details) {
+    GestureDragUpdateCallback onVerticalDragUpdate =
+        (DragUpdateDetails details) {
       setState(() {
         double temp = reviewsCardPostitonY + details.delta.dy;
         if (temp > 2 && temp < startPositionY) {
           reviewsCardPostitonY = temp;
-          _animationController.forward();
         }
       });
     };
 
-    GestureDragEndCallback onVerticalDragEnd = (DragEndDetails details){
-      double value = (startPositionY + 2.0)/2.0;
+    GestureDragEndCallback onVerticalDragEnd = (DragEndDetails details) {
+      double value = (startPositionY + 2.0) / 2.0;
       double endValue = 2.0;
       if (reviewsCardPostitonY > value) {
         endValue = startPositionY;
       }
-      _animation = Tween(begin: reviewsCardPostitonY,end: endValue).animate(_animationController);
-      setState(() {
-        reviewsCardPostitonY = _animation.value;
-      });
+      _animation = Tween(begin: reviewsCardPostitonY, end: endValue)
+          .animate(_animationController);
+      reviewsCardPostitonY = _animation.value;
+      _animationController.forward();
     };
 
-    var reviewsCard = ReviewsCardListView(widget.data.popularReviews,
-                        scrollBool: reviewCardUp,
-                        onVerticalDragUpdate: onVerticalDragUpdate,
-                        onVerticalDragEnd: onVerticalDragEnd,);
-
-    return Stack(
-      children: <Widget>[
-        SingleChildScrollView(
-          controller: scrollController,
-          child: Column(
-            key: columnKey,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              PosterAndTitle(widget.data),
-              DouBanRatingCard( widget.data),
-              MovieSummary(widget.data.summary,),
-              CastListView(widget.data,),
-              TrailersListView(widget.data),
-              CommentsListView(widget.data),
-              reviewCardOn ? Container() : reviewsCard, 
-            ],
-          ),
-        ),
-        reviewCardOn? Positioned(top: reviewsCardPostitonY,child:reviewsCard): Container(),
-      ]
+    var reviewsCard = ReviewsCardListView(
+      widget.data.popularReviews,
+      scrollBool: reviewsCardPostitonY < 2.1,
+      onVerticalDragUpdate: onVerticalDragUpdate,
+      onVerticalDragEnd: onVerticalDragEnd,
     );
+
+    return Stack(children: <Widget>[
+      SingleChildScrollView(
+        controller: scrollController,
+        child: Column(
+          key: columnKey,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            PosterAndTitle(widget.data),
+            DouBanRatingCard(widget.data),
+            MovieSummary(
+              widget.data.summary,
+            ),
+            CastListView(
+              widget.data,
+            ),
+            TrailersListView(widget.data),
+            CommentsListView(widget.data),
+            reviewCardOn ? Container() : reviewsCard,
+          ],
+        ),
+      ),
+      reviewCardOn
+          ? Positioned(top: reviewsCardPostitonY, child: reviewsCard)
+          : Container(),
+    ]);
   }
 
   @override

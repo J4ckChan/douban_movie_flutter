@@ -16,7 +16,7 @@ class ReviewsCardListView extends StatelessWidget {
   final GestureDragUpdateCallback onVerticalDragUpdate;
   final GestureDragEndCallback onVerticalDragEnd;
   final double reviewHeight = 180.0;
-  bool scrollBool;
+  final bool scrollBool;
 
   @override
   Widget build(BuildContext context) {
