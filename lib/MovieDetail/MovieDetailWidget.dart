@@ -23,10 +23,8 @@ class MovieDetailWidget extends StatefulWidget {
   _MovieDetailWidgetState createState() => _MovieDetailWidgetState();
 }
 
-class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTickerProviderStateMixin{
+class _MovieDetailWidgetState extends State<MovieDetailWidget> {
 
-  Animation<double> animation;
-  AnimationController animationController;
   ScrollController scrollController = ScrollController();
 
   bool reviewCardUp = false;
@@ -41,16 +39,7 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
   @override
   void initState() {
     super.initState();
-    animationController = AnimationController(
-      duration: const Duration(milliseconds: 300),
-      vsync: this);
     reviewsCardPostitonY = 0.9 * widget.size.height - endPositionY;
-    animation = Tween(begin: reviewsCardPostitonY, end:2.0).animate(animationController)
-      ..addListener((){
-        setState(() {
-          
-        });
-      });
 
     scrollController.addListener((){
       if (columnHeight < 0) {
@@ -72,12 +61,6 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
   @override
   Widget build(BuildContext context) {
 
-    VoidCallback onTap = (){ 
-      if (reviewCardOn) {
-        reviewCardUp ? animationController.reverse():animationController.forward();
-        reviewCardUp = !reviewCardUp;
-      }};
-
     GestureDragUpdateCallback onVerticalDragUpdate = (DragUpdateDetails details) {
       print('${details.delta},${details.globalPosition},${details.localPosition}');
       setState(() {
@@ -88,7 +71,7 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
       });
     };
 
-    var reviewsCard = ReviewsCardListView(widget.data.popularReviews, onTap: onTap,scrollBool: reviewCardUp,onVerticalDragUpdate: onVerticalDragUpdate,);
+    var reviewsCard = ReviewsCardListView(widget.data.popularReviews,scrollBool: reviewCardUp,onVerticalDragUpdate: onVerticalDragUpdate,);
 
     return Stack(
       children: <Widget>[
@@ -115,7 +98,6 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget> with SingleTicker
 
   @override
   void dispose() {
-    this.animationController.dispose();
     this.scrollController.dispose();
     super.dispose();
   }

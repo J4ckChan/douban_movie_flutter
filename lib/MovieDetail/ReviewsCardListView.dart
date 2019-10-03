@@ -4,16 +4,14 @@ import 'package:flutter/material.dart';
 
 class ReviewsCardListView extends StatelessWidget {
   
-ReviewsCardListView(
+  ReviewsCardListView(
     this.popularReviews,{
       Key key,
-      this.onTap,
       this.onVerticalDragUpdate,
       this.scrollBool = true,
     }) : super(key: key);
 
   final List<Review> popularReviews;
-  final VoidCallback onTap;
   final GestureDragUpdateCallback onVerticalDragUpdate;
   final double reviewHeight = 180.0;
   bool scrollBool;
@@ -24,7 +22,6 @@ ReviewsCardListView(
     double listViewHeight = this.scrollBool? MediaQuery.of(context).size.height - kBottomNavigationBarHeight - 140: popularReviews.length * (reviewHeight + 10.0);
 
     return GestureDetector(
-      onTap: this.onTap,
       onVerticalDragUpdate: this.onVerticalDragUpdate,
       child: Container(
         decoration: BoxDecoration(
