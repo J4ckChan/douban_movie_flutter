@@ -5,11 +5,11 @@ import 'package:flutter/material.dart';
 
 class TrailersListView extends StatelessWidget {
   const TrailersListView(
-    this.movieDetailData,{
+    this.trailers,{
     Key key,
   }) : super(key: key);
 
-  final MovieDetailData movieDetailData;
+  final List<Trailer> trailers;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class TrailersListView extends StatelessWidget {
             height: 180,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: this.movieDetailData.trailers.length,
+              itemCount: this.trailers.length,
               itemBuilder: (context,index){
                 return Padding(
                   padding: const EdgeInsets.all(4),
@@ -36,13 +36,13 @@ class TrailersListView extends StatelessWidget {
                             width: 260,
                             fit: BoxFit.fill,
                             placeholder: 'images/image_placeholder.png',
-                            image: this.movieDetailData.trailers[index].medium,
+                            image: this.trailers[index].medium,
                           ),
                         ),
                         FlatButton(
                           onPressed: (){
                             Navigator.push(context,MaterialPageRoute(
-                            builder: (context) => VideoPlayerPage(this.movieDetailData.trailers[index].resourceUrl)
+                            builder: (context) => VideoPlayerPage(this.trailers[index].resourceUrl)
                           ));
                         },
                           child: Icon(Icons.play_circle_outline,color: Colors.white70,size: 42,)

@@ -109,7 +109,9 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget>
             CastListView(
               widget.data,
             ),
-            TrailersListView(widget.data),
+            widget.data.trailers.isNotEmpty
+              ? TrailersListView(widget.data.trailers)
+              : Container(),
             CommentsListView(widget.data),
             reviewCardOn ? Container() : reviewsCard,
           ],
