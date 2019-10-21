@@ -81,10 +81,11 @@ class _MovieDetailWidgetState extends State<MovieDetailWidget>
       if (reviewsCardPostitonY > value) {
         endValue = startPositionY;
       }
-      _animation = Tween(begin: reviewsCardPostitonY, end: endValue)
-          .animate(_animationController);
-      reviewsCardPostitonY = _animation.value;
-      _animationController.forward();
+      _animation = Tween(begin: reviewsCardPostitonY, end: endValue).animate(_animationController);
+      setState(() {
+        reviewsCardPostitonY = _animation.value;
+        _animationController.forward();
+      });
     };
 
     var reviewsCard = ReviewsCardListView(
